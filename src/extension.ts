@@ -7,7 +7,7 @@ export function activate(context: vscode.ExtensionContext) {
     for (let command in functions.default) {
         console.log('register command:' + command);
         context.subscriptions.push(
-            vscode.commands.registerCommand(command, functions.default[command]);
+            vscode.commands.registerCommand(command, functions.default[command]));
     }
 
 }

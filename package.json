@@ -11,13 +11,17 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:tianhao.toggleCase"
+		"onCommand:tianhao.toggleCase",
+		"onCommand:tianhao.test"
 	],
 	"main": "./out/extension",
 	"contributes": {
 		"commands": [{
 			"title": "Toggle Case",
 			"command": "tianhao.toggleCase"
+		},{
+			"title": "Test",
+			"command": "tianhao.test"
 		}],
 		"keybindings": [{
 			"command": "tianhao.toggleCase",

@@ -2,15 +2,16 @@
 import * as vscode from 'vscode';
 
 const $editor = vscode.window.activeTextEditor;
+const showMessage = vscode.window.showInformationMessage;
 
 export default {
 
     'tianhao.toggleCase': () => {
         if (!$editor) {
-            return vscode.window.showWarningMessage('There is no activeTextEditor!');
+            return showMessage('There is no activeTextEditor!');
         }
         if (!$editor.selections || $editor.selections.length === 0) {
-            return vscode.window.showInformationMessage('There is no selected text!');
+            return showMessage('There is no selected text!');
         }
 
         $editor.edit((edit: any) => {
@@ -27,6 +28,10 @@ export default {
                 edit.replace(range, text.toUpperCase());
             }
         });
+    },
+
+    'tianhao.test': () => {
+        showMessage('Testx !');
     }
 
 };
