@@ -7,8 +7,9 @@
 	"engines": {
 		"vscode": "^1.28.0"
 	},
+	"homepage": "https://github.com/lyrieek/vsc-tianhao/blob/master/README.md",
 	"categories": [
-		"Other"
+		"Other", "Extension Packs"
 	],
 	"activationEvents": [
 		"onCommand:tianhao.toggleCase",
@@ -19,7 +20,7 @@
 		"commands": [{
 			"title": "Toggle Case",
 			"command": "tianhao.toggleCase"
-		},{
+		}, {
 			"title": "Test",
 			"command": "tianhao.test"
 		}],
