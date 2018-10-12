@@ -4,8 +4,11 @@ const packageConfig = require('../package.json');
 
 export default {
 
-    path: function (key) {
-        return path.resolve(__dirname, '..', packageConfig[key]);
+    path: function (filePath) {
+        if (~filePath.indexOf('/')) {
+            return path.resolve(__dirname, '..', filePath);
+        }
+        return path.resolve(__dirname, '..', packageConfig[filePath]);
     },
     read: function (filePath, callback) {
         fs.readFile(filePath, 'utf-8', (err, data) => {
