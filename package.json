@@ -8,14 +8,10 @@
 		"vscode": "^1.28.0"
 	},
 	"homepage": "https://github.com/lyrieek/vsc-tianhao/blob/master/README.md",
-	"categories": [
-		"Other", "Extension Packs"
-	],
-	"activationEvents": [
-		"onCommand:tianhao.toggleCase",
-		"onCommand:tianhao.test"
-	],
+	"categories": ["Other"],
+	"activationEvents": ["*"],
 	"main": "./out/extension",
+	"remoteConfigPath": "./remote.json",
 	"contributes": {
 		"commands": [{
 			"title": "Toggle Case",
@@ -23,6 +19,9 @@
 		}, {
 			"title": "Test",
 			"command": "tianhao.test"
+		}, {
+			"title": "Remote",
+			"command": "tianhao.remote"
 		}],
 		"keybindings": [{
 			"command": "tianhao.toggleCase",
@@ -43,5 +42,8 @@
 		"tslint": "^5.8.0",
 		"@types/node": "^8.10.25",
 		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"ssh2": "^0.6.1"
 	}
 }

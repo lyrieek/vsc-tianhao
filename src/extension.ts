@@ -11,9 +11,10 @@ export function activate(context: vscode.ExtensionContext) {
     }
     // vscode.window.createTreeView()
     let pathStatusBarBtn = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
-    pathStatusBarBtn.command = "tianhao.test";
+    pathStatusBarBtn.command = "tianhao.remote";
     pathStatusBarBtn.text = "Remote";
-    pathStatusBarBtn.tooltip = "Test in click";
+    pathStatusBarBtn.tooltip = "Execute Remote script";
+    pathStatusBarBtn.color = "yellow";
     pathStatusBarBtn.show();
 
 }

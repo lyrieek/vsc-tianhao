@@ -1,5 +1,7 @@
 'use strict';
 import * as vscode from 'vscode';
+import { Client } from 'ssh2';
+import { default as utils } from './utils';
 
 const $editor = vscode.window.activeTextEditor;
 const showMessage = vscode.window.showInformationMessage;
@@ -14,7 +16,7 @@ export default {
             return showMessage('There is no selected text!');
         }
 
-        $editor.edit((edit: any) => {
+        $editor.edit((edit) => {
             for (let i = 0; i < $editor.selections.length; i++) {
                 const selection = $editor.selections[i];
                 if (selection.isEmpty) {
@@ -29,9 +31,42 @@ export default {
             }
         });
     },
-
     'tianhao.test': () => {
-        showMessage('Testx !');
+        showMessage('Test !');
+    },
+    'tianhao.remote': () => {
+        utils.read(utils.path('remoteConfigPath'), (data) => {
+            data = JSON.parse(data);
+            console.log(data);
+            const conn = new Client();
+            conn.on('ready', () => {
+                console.log('connect ...');
+                conn.exec('uptime\nservice tomcat8 status\nls -l\nuptime', function (err, stream) {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    console.log("======Remote Received=================");
+                    const result = [];
+                    stream.on('data', function (data) {
+                        console.log(data.toString('UTF-8'));
+                        result.push(data.toString('UTF-8');
+                        console.log("--------------------------------------");
+                    }).on('close', function (code, signal) {
+                        vscode.window.showTextDocument(vscode.workspace.openTextDocument({
+                            language: 'plaintext',
+                            content: result.join('\n--------------------------------------\n')
+                        }));
+                        console.log('remote close: ' + code + ':' + signal);
+                        conn.end();
+                        console.log("======Remote End======================\n");
+                    }).stderr.on('data', function (data) {
+                        console.log('remote error: ' + data);
+                    });
+                });
+            }).connect(data.connect);
+        });
+        showMessage("ok");
     }
 
 };
