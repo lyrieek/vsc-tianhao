@@ -35,38 +35,32 @@ export default {
         showMessage('Test !');
     },
     'tianhao.remote': () => {
+        const conn = new Client();
+        const execCallBack = (err, stream) => {
+            if (err) {
+                return console.log(err);
+            }
+            console.log("======Remote Received=================");
+            let result = '';
+            stream.on('data', (resultBuffer) => result += resultBuffer.toString('UTF-8'))
+                .on('close', function (code, signal) {
+                    vscode.workspace.openTextDocument({
+                        language: 'log',
+                        content: result
+                    }).then((doc) => vscode.window.showTextDocument(doc));
+                    console.log('remote close: ' + code + ':' + signal);
+                    conn.end();
+                    console.log("======Remote End======================\n");
+                }).stderr.on('data', (error) => result += "error:" + error.toString('UTF-8'));
+        };
+
         utils.read(utils.path('remoteConfigPath'), (data) => {
             data = JSON.parse(data);
             console.log(data);
             utils.read(utils.path(data.execPath), (shellContext) => {
-                const conn = new Client();
                 conn.on('ready', () => {
-                    console.log('connect ...');
                     showMessage('Connect Success');
-                    conn.exec('uptime\n' + shellContext + '\nuptime', function (err, stream) {
-                        if (err) {
-                            return console.log(err);
-                        }
-                        console.log("======Remote Received=================");
-                        let result = '';
-                        stream.on('data', function (data) {
-                            result += data.toString('UTF-8');
-                            console.log("--------------------------------------");
-                        }).on('close', function (code, signal) {
-                            vscode.workspace.openTextDocument({
-                                language: 'log',
-                                content: result
-                            }).then((doc) => {
-                                vscode.window.showTextDocument(doc);
-                            });
-                            console.log('remote close: ' + code + ':' + signal);
-                            conn.end();
-                            console.log("======Remote End======================\n");
-                        }).stderr.on('data', function (data) {
-                            result += "error:" + data.toString('UTF-8');
-                            console.log('remote error: ' + data);
-                        });
-                    });
+                    conn.exec('uptime\n' + shellContext + '\nuptime', execCallBack);
                 }).connect(data.connect);
             });
         });
