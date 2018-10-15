@@ -5,6 +5,7 @@
 
 - tianhao.toggleCase
 - tianhao.test
+- tianhao.remote
 
 # Features
 主要包含如下Features
