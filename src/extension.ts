@@ -9,7 +9,6 @@ export function activate(context: vscode.ExtensionContext) {
         context.subscriptions.push(
             vscode.commands.registerCommand(command, functions[command]));
     }
-    // vscode.window.createTreeView()
     let pathStatusBarBtn = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 100);
     pathStatusBarBtn.command = "tianhao.remote";
     pathStatusBarBtn.text = "Remote";
