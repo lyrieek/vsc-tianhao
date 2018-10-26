@@ -3,13 +3,12 @@ import * as vscode from 'vscode';
 import { Client } from 'ssh2';
 import { default as utils } from './utils';
 
-const getEditor = () => vscode.window.activeTextEditor;
 const showMessage = vscode.window.showInformationMessage;
 
 export default {
 
     'tianhao.toggleCase': () => {
-        const $editor = getEditor();
+        const $editor = vscode.window.activeTextEditor;
         if (!$editor) {
             return showMessage('There is no activeTextEditor!');
         }
