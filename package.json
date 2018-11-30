@@ -3,10 +3,6 @@
 	"displayName": "Tianhao",
 	"description": "tianhao vscode extension",
 	"version": "0.0.1",
-	"publisher": "vsc-tianhao",
-	"engines": {
-		"vscode": "^1.28.0"
-	},
 	"homepage": "https://github.com/lyrieek/vsc-tianhao/blob/master/README.md",
 	"categories": [
 		"Other"
