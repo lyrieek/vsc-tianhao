@@ -1,5 +1,6 @@
 {
 	"name": "vsc-tianhao",
+	"publisher": "vsc-tianhao",
 	"displayName": "Tianhao",
 	"description": "tianhao vscode extension",
 	"version": "0.0.2",
