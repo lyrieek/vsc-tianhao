@@ -5,6 +5,7 @@
 	"description": "tianhao vscode extension",
 	"version": "0.0.2",
 	"homepage": "https://github.com/lyrieek/vsc-tianhao/blob/master/README.md",
+	"repository": "https://github.com/lyrieek/vsc-tianhao.git",
 	"categories": [
 		"Other"
 	],
