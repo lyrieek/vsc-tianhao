@@ -31,9 +31,7 @@ export default {
             }
         });
     },
-    'tianhao.test': () => {
-        showMessage('Test !');
-    },
+    'tianhao.test': () => showMessage('Test !'),
     'tianhao.remote': () => {
         const conn = new Client();
         const execCallBack = (err, stream) => {
@@ -64,6 +62,7 @@ export default {
                 }).connect(data.connect);
             });
         });
-    }
+    },
+    'tianhao.time': () => showMessage(+new Date()+"")
 
 };

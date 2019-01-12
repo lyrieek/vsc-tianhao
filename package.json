@@ -10,11 +10,14 @@
 	"activationEvents": [
 		"*"
 	],
+	"engines": {
+		"node": ">=0.10.0",
+		"vscode": "^1.30.0"
+	},
 	"main": "./out/extension",
 	"remoteConfigPath": "./remote.json",
 	"contributes": {
-		"commands": [
-			{
+		"commands": [{
 				"title": "Toggle Case",
 				"command": "tianhao.toggleCase"
 			},
@@ -25,15 +28,17 @@
 			{
 				"title": "Remote",
 				"command": "tianhao.remote"
+			},
+			{
+				"title": "Alert Timestamp",
+				"command": "tianhao.time"
 			}
 		],
-		"keybindings": [
-			{
-				"command": "tianhao.toggleCase",
-				"key": "ctrl+shift+u",
-				"when": "editorTextFocus"
-			}
-		]
+		"keybindings": [{
+			"command": "tianhao.toggleCase",
+			"key": "ctrl+shift+u",
+			"when": "editorTextFocus"
+		}]
 	},
 	"scripts": {
 		"watch": "tsc -watch -p ./",
